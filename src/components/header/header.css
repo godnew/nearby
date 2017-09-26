@@ -1,4 +1,9 @@
 .header-container{
+    position: fixed;
+    width: 100%;
+    top:0;
+    left:0;
+    box-sizing: border-box;
     display: flex;
     justify-content: space-between;
     height: 40px;

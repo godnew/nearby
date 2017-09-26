@@ -12,7 +12,7 @@ class Food extends Component {
       <div>
         <Header title="餐厅" right="" left="地图" rightClick="" leftClick=""/>
         <Search placeholder="搜索餐厅" changeFn={()=>{}}/>
-        <List/>
+        <List type="餐厅"/>
       </div>
     );
   }

@@ -35,3 +35,5 @@ var Util = {
 
   detailURL: 'http://restapi.amap.com/v3/place/detail?'
 };
+
+export default Util;
