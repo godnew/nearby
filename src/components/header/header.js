@@ -9,13 +9,13 @@ class Header extends Component {
     return (
       <div className="header-container">
         <div>
-          <span onClick={this.props.rightClick?this.props.rightClick.bind(this):()=>{return false}}>{this.props.right}</span>
+          <span onClick={this.props.leftClick?this.props.leftClick:()=>{return false}}>{this.props.left}</span>
         </div>
         <div>
           <span className="header-title">{this.props.title}</span>
         </div>
         <div className="tr wh">
-          <span onClick={this.props.leftClick?this.props.leftClick.bind(this):()=>{return false}}>{this.props.left}</span>
+          <span onClick={this.props.rightClick?this.props.rightClick:()=>{return false}}>{this.props.right}</span>
         </div>
       </div>
     );

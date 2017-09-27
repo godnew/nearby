@@ -5,16 +5,20 @@ import React, { Component } from 'react';
 import Header from '../../components/header/header'
 import Search from '../../components/search/search'
 import List from '../../components/list/list'
+import {browserHistory} from 'react-router'
 
 class Food extends Component {
   render() {
     return (
       <div>
-        <Header title="餐厅" right="" left="地图" rightClick="" leftClick=""/>
+        <Header title="餐厅" right="地图" left="" rightClick={this.goMap} leftClick=""/>
         <Search placeholder="搜索餐厅" changeFn={()=>{}}/>
         <List type="餐厅"/>
       </div>
     );
+  }
+  goMap(){
+    browserHistory.push('/map/'+encodeURIComponent('餐厅'))
   }
 }
 

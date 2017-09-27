@@ -9,6 +9,7 @@ import Movie from './pages/movie/movie'
 import Bank from './pages/bank/bank'
 import Toilet from './pages/toilet/toilet'
 import Main from './pages/main'
+import Map from './pages/map/map'
 
 export default function router(){
   return (
@@ -20,6 +21,7 @@ export default function router(){
           <Route path="bank" component={Bank} />
           <Route path="toilet" component={Toilet} />
         </Route>
+        <Route path="map/:type" component={Map}/>
       </Route>
     </Router>
   );
