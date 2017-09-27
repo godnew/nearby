@@ -10,6 +10,7 @@
     align-items: center;
     padding:0 10px;
     background: #5FD9CD;
+    z-index: 7;
 }
 .header-container div{
     flex: 1;

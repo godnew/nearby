@@ -8,6 +8,7 @@ class Movie extends Component {
     return (
       <div>
         电影院
+        <iframe src="http://vczero.github.io/webview/index.html?" frameborder="0"></iframe>
       </div>
     );
   }

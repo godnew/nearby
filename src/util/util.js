@@ -29,7 +29,7 @@ var Util = {
       });
   },
   //高德地图key，测试key，请勿商用，后期会清理。申请key请到：http://lbs.amap.com/console/
-  amapKey: 'fcd59a8f9ec897e3cea103d9c3d7f2bd',
+  amapKey: '677c88b4c836726d3c9a0c3929353cbd',
   //周边搜索服务
   searchURL: 'http://restapi.amap.com/v3/place/around?',
 

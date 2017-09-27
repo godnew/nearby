@@ -3,6 +3,7 @@
  */
 import React, { Component } from 'react';
 import Util from '../../util/util'
+import {connect} from 'react-redux'
 
 class List extends Component {
   constructor(props){
@@ -13,21 +14,17 @@ class List extends Component {
     }
   }
   render() {
-    this._getLocation()
     return (
       <div>
         <ul>
           {this.state.list.map((item,index)=>{
-            // var phone;
-            // if(item.tel){
-            //   let numb=item.tel.split(';')[0];
-            //   let call='tel:'+numb;
-            //   phone=(
-            //     <div style={styles.phone}>
-            //       <a style={styles.call} href={call}>电话</a>
-            //     </div>
-            //   )
-            // }
+            var phone;
+            //item.tel 有个大坑全是字符串，突然会出现个空数组
+            if(item.tel&&!Array.isArray(item.tel)){
+              let numb=item.tel.split(';')[0];
+              let call='tel:'+numb;
+              phone=call;
+            }
             return (
               <li style={styles.list}>
                 <div style={styles.item}>
@@ -39,7 +36,7 @@ class List extends Component {
                   <span>{item.address}</span>
                 </div>
                 <div style={styles.phone}>
-                  <a style={styles.call} href="">电话</a>
+                  <a style={styles.call} href={phone}>电话</a>
                 </div>
               </li>
             );
@@ -48,14 +45,16 @@ class List extends Component {
       </div>
     );
   }
+  componentDidMount(){
+    this._getLocation()
+  }
   _getLocation(){
     var that=this;
     window.navigator.geolocation.getCurrentPosition(function(position){
       var lat = position.coords.latitude;
       var lon = position.coords.longitude;
       var lnglat=lon+','+lat;
-      var url=Util.searchURL + 'key=' + Util.amapKey + '&keywords='+ that.props.type + '&extensions=base'+'&location=' + lnglat;
-      alert(url)
+      var url=Util.searchURL + 'key=' + Util.amapKey + '&keywords='+ that.props.type+'&types=050000' + '&extensions=base'+'&location=' + lnglat;
       that._getData(url);
     })
   }
@@ -73,6 +72,9 @@ class List extends Component {
     })
   }
 }
+
+// -------------------redux react 绑定--------------------
+
 
 var styles={
   list:{
