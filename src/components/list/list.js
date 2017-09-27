@@ -4,6 +4,12 @@
 import React, { Component } from 'react';
 import Util from '../../util/util'
 import {connect} from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as bankActionsFromOtherFile from '../../actions/bank'
+import * as foodActionsFromOtherFile from '../../actions/food'
+import * as movieActionsFromOtherFile from '../../actions/movie'
+import * as toiletActionsFromOtherFile from '../../actions/toilet'
+import * as positionActionsFromOtherFile from '../../actions/position'
 
 class List extends Component {
   constructor(props){
@@ -54,7 +60,8 @@ class List extends Component {
       var lat = position.coords.latitude;
       var lon = position.coords.longitude;
       var lnglat=lon+','+lat;
-      var url=Util.searchURL + 'key=' + Util.amapKey + '&keywords='+ that.props.type+'&types=050000' + '&extensions=base'+'&location=' + lnglat;
+      this.props.positionActions.update(lnglat)
+      var url=Util.searchURL + 'key=' + Util.amapKey + '&keywords='+ that.props.type+'&types=050000&extensions=base&location=' + lnglat;
       that._getData(url);
     })
   }
@@ -66,15 +73,45 @@ class List extends Component {
           list: data.pois,
           count: count
         });
+        this._addStore(data)
       }else{
         alert('没有查询到相应的数据');
       }
     })
   }
+  _addStore(data){
+    var posArr = [];
+    var len = data.pois.length > 10? 10: data.pois.length;
+    for(var i = 0; i < len; i++){
+      posArr.push(data.pois[i].location);
+    }
+    var posStr = posArr.join(',');
+    var type=this.props.type
+    if(type==='餐饮'){
+      this.props.foodActions.update(posStr)
+    }else if(type==='电影院'){
+      this.props.movieActions.update(posStr)
+    }else if(type==='银行'){
+      this.props.bankActions.update(posStr)
+    }else if(type==='厕所'){
+      this.props.toiletActions.update(posStr)
+    }
+  }
 }
 
 // -------------------redux react 绑定--------------------
 
+function mapDispatchToProps(dispatch){
+  return {
+    bankActions:bindActionCreators(bankActionsFromOtherFile, dispatch),
+    foodActions:bindActionCreators(foodActionsFromOtherFile, dispatch),
+    movieActions:bindActionCreators(movieActionsFromOtherFile, dispatch),
+    toiletActions:bindActionCreators(toiletActionsFromOtherFile, dispatch),
+    positionActions:bindActionCreators(positionActionsFromOtherFile, dispatch)
+  }
+}
+
+export default connect(null,mapDispatchToProps)(List)
 
 var styles={
   list:{
@@ -101,5 +138,3 @@ var styles={
     height:'100%'
   }
 }
-
-export default List;
