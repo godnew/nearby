@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import Header from '../../components/header/header'
 import Search from '../../components/search/search'
 import List from '../../components/list/list'
-import {browserHistory} from 'react-router'
+import {hashHistory} from 'react-router'
 
 class Food extends Component {
   render() {
@@ -18,7 +18,7 @@ class Food extends Component {
     );
   }
   goMap(){
-    browserHistory.push('/map/'+encodeURIComponent('餐厅'))
+    hashHistory.push('/map/'+encodeURIComponent('餐厅'))
   }
 }
 

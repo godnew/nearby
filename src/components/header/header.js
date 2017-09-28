@@ -8,8 +8,8 @@ class Header extends Component {
   render() {
     return (
       <div className="header-container">
-        <div>
-          <span onClick={this.props.leftClick?this.props.leftClick:()=>{return false}}>{this.props.left}</span>
+        <div style={{textAlign:'left',color:'#fff'}}>
+          <span>{this.props.left?(<i onClick={this.props.leftClick?this.props.leftClick:()=>{return false}} className="iconfont icon-xiangzuo"></i>):''}</span>
         </div>
         <div>
           <span className="header-title">{this.props.title}</span>

@@ -7,7 +7,7 @@ import './static/css/common.css'
 import RouterView from './router'
 import initReactFastClick from 'react-fastclick'
 
-import registerServiceWorker from './registerServiceWorker';
+// import registerServiceWorker from './registerServiceWorker';
 
 initReactFastClick()
 const store=configureStore()
@@ -16,4 +16,4 @@ ReactDOM.render(
     <RouterView/>
   </Provider>
   , document.getElementById('root'));
-registerServiceWorker();
+// registerServiceWorker();

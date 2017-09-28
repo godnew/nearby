@@ -34,12 +34,12 @@ class List extends Component {
             return (
               <li style={styles.list}>
                 <div style={styles.item}>
-                  <span>{item.name}</span>
-                  <span>{item.type}</span>
+                  <span style={styles.text}>{item.name}</span>
+                  <span style={styles.text}>{item.type}</span>
                 </div>
                 <div style={styles.item}>
-                  <span>{item.distance}米</span>
-                  <span>{item.address}</span>
+                  <span style={styles.text}>{item.distance}米</span>
+                  <span style={styles.text}>{item.address}</span>
                 </div>
                 <div style={styles.phone}>
                   <a style={styles.call} href={phone}>电话</a>
@@ -59,9 +59,11 @@ class List extends Component {
     window.navigator.geolocation.getCurrentPosition(function(position){
       var lat = position.coords.latitude;
       var lon = position.coords.longitude;
+      lat=parseFloat(lat)-0.00230424878348;
+      lon=parseFloat(lon)+0.003500299002484;
       var lnglat=lon+','+lat;
-      this.props.positionActions.update(lnglat)
-      var url=Util.searchURL + 'key=' + Util.amapKey + '&keywords='+ that.props.type+'&types=050000&extensions=base&location=' + lnglat;
+      that.props.positionActions.update(lnglat)
+      var url=Util.searchURL + 'key=' + Util.amapKey + '&keywords='+ that.props.type+'&extensions=base&location=' + lnglat;
       that._getData(url);
     })
   }
@@ -87,7 +89,8 @@ class List extends Component {
     }
     var posStr = posArr.join(',');
     var type=this.props.type
-    if(type==='餐饮'){
+
+    if(type==='餐厅'){
       this.props.foodActions.update(posStr)
     }else if(type==='电影院'){
       this.props.movieActions.update(posStr)
@@ -125,7 +128,12 @@ var styles={
     color:'#666'
   },
   text:{
-
+    display:'block',
+    width:'50%',
+    overflow: 'hidden',
+    textOverflow:'ellipsis',
+    whiteSpace: 'nowrap',
+    textAlign:'left'
   },
   phone:{
     lineHeight: '30px',

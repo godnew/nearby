@@ -6,10 +6,12 @@ import bank from './bank'
 import food from './food'
 import movie from './movie'
 import toilet from './toilet'
+import position from './position'
 
 export default combineReducers({
   bank,
   food,
   movie,
-  toilet
+  toilet,
+  position
 })

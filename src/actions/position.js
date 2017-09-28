@@ -6,6 +6,6 @@ import * as actionTypes from '../actionsType/position'
 export function update(data){
   return {
     type:actionTypes.POSITION_UPDATE,
-    data
+    data:data
   }
 }

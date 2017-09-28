@@ -2,7 +2,7 @@
  * Created by godnew on 2017/9/26.
  */
 import React from 'react'
-import { Router, Route ,browserHistory} from 'react-router'
+import { Router, Route ,hashHistory} from 'react-router'
 import App from './App'
 import Food from './pages/food/food'
 import Movie from './pages/movie/movie'
@@ -13,7 +13,7 @@ import Map from './pages/map/map'
 
 export default function router(){
   return (
-    <Router history={browserHistory}>
+    <Router history={hashHistory}>
       <Route path="/" component={App}>
         <Route path="main" component={Main}>
           <Route path="food" component={Food} />
