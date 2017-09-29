@@ -12,7 +12,8 @@ class Map extends Component {
     this.state={
       type:'',
       markers:'',
-      pos:''
+      pos:'',
+      names:''
     }
   }
   render() {
@@ -32,19 +33,23 @@ class Map extends Component {
     })
     if(this.props.params.type==='餐厅'){
       this.setState({
-        markers:this.props.foodMarkers
+        markers:this.props.foodState.pos,
+        names:this.props.foodState.name
       })
     }else if(this.props.params.type==='电影院'){
       this.setState({
-        markers:this.props.movieMarkers
+        markers:this.props.movieState.pos,
+        names:this.props.movieState.name
       })
     }else if(this.props.params.type==='银行'){
       this.setState({
-        markers:this.props.bankMarkers
+        markers:this.props.bankState.pos,
+        names:this.props.bankState.name
       })
     }else if(this.props.params.type==='厕所'){
       this.setState({
-        markers:this.props.toiletMarkers
+        markers:this.props.toiletState.pos,
+        names:this.props.toiletState.name
       })
     }
   }
@@ -53,7 +58,7 @@ class Map extends Component {
   }
   _setUrl(){
     var url = 'http://godnew.wang/nearby/map/map.html?';
-    url += 'pos=' + this.state.pos + '&markers=' + this.state.markers;
+    url += 'pos=' + this.state.pos + '&markers=' + this.state.markers+'&names='+encodeURIComponent(this.state.names);
     this.refs.iframe.src=url;
   }
   goBack(){
@@ -65,10 +70,10 @@ class Map extends Component {
 function mapStateToProps(state){
   return {
     pos:state.position,
-    bankMarkers:state.bank,
-    foodMarkers:state.food,
-    movieMarkers:state.movie,
-    toiletMarkers:state.toilet
+    bankState:state.bank,
+    foodState:state.food,
+    movieState:state.movie,
+    toiletState:state.toilet,
   }
 }
 export default connect(

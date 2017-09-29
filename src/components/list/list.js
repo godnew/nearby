@@ -59,12 +59,16 @@ class List extends Component {
     window.navigator.geolocation.getCurrentPosition(function(position){
       var lat = position.coords.latitude;
       var lon = position.coords.longitude;
-      lat=parseFloat(lat)-0.00230424878348;
-      lon=parseFloat(lon)+0.003500299002484;
+      lat=parseFloat(lat).toFixed(6);
+      lon=parseFloat(lon).toFixed(6);
       var lnglat=lon+','+lat;
-      that.props.positionActions.update(lnglat)
-      var url=Util.searchURL + 'key=' + Util.amapKey + '&keywords='+ that.props.type+'&extensions=base&location=' + lnglat;
-      that._getData(url);
+      var transferUrl=Util.transferURL+lnglat+"&key="+Util.amapKey;
+      Util.getJSON(transferUrl,(res)=>{
+        that.props.positionActions.update(res.locations);
+        let url=Util.searchURL + 'key=' + Util.amapKey + '&keywords='+ that.props.type+'&extensions=base&location=' + res.locations;
+        that._getData(url);
+      });
+
     })
   }
   _getData(url){
@@ -83,21 +87,33 @@ class List extends Component {
   }
   _addStore(data){
     var posArr = [];
+    var name=[]
     var len = data.pois.length > 10? 10: data.pois.length;
     for(var i = 0; i < len; i++){
       posArr.push(data.pois[i].location);
+      if(data.pois[i].name.length>5){
+          let item=data.pois[i].name.substr(0,5)+'...';
+          name.push(item)
+      }else{
+        name.push(data.pois[i].name);
+      }
     }
     var posStr = posArr.join(',');
+    var nameStr=name.join(',');
+    var data={
+      pos:posStr,
+      name:nameStr
+    }
     var type=this.props.type
 
     if(type==='餐厅'){
-      this.props.foodActions.update(posStr)
+      this.props.foodActions.update(data)
     }else if(type==='电影院'){
-      this.props.movieActions.update(posStr)
+      this.props.movieActions.update(data)
     }else if(type==='银行'){
-      this.props.bankActions.update(posStr)
+      this.props.bankActions.update(data)
     }else if(type==='厕所'){
-      this.props.toiletActions.update(posStr)
+      this.props.toiletActions.update(data)
     }
   }
 }

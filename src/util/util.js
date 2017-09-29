@@ -33,7 +33,10 @@ var Util = {
   //周边搜索服务
   searchURL: 'http://restapi.amap.com/v3/place/around?',
 
-  detailURL: 'http://restapi.amap.com/v3/place/detail?'
+  detailURL: 'http://restapi.amap.com/v3/place/detail?',
+
+  //转换坐标
+  transferURL:'http://restapi.amap.com/v3/assistant/coordinate/convert?coordsys=gps&locations='
 };
 
 export default Util;
