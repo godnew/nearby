@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import Util from '../../util/util'
 import {connect} from 'react-redux'
 import { bindActionCreators } from 'redux'
+import {Link} from 'react-router'
 import * as bankActionsFromOtherFile from '../../actions/bank'
 import * as foodActionsFromOtherFile from '../../actions/food'
 import * as movieActionsFromOtherFile from '../../actions/movie'
@@ -33,14 +34,16 @@ class List extends Component {
             }
             return (
               <li style={styles.list}>
-                <div style={styles.item}>
-                  <span style={styles.text}>{item.name}</span>
-                  <span style={styles.text}>{item.type}</span>
-                </div>
-                <div style={styles.item}>
-                  <span style={styles.text}>{item.distance}米</span>
-                  <span style={styles.text}>{item.address}</span>
-                </div>
+                <Link to={'/detail/'+item.id}>
+                  <div style={styles.item}>
+                    <span style={styles.text}>{item.name}</span>
+                    <span style={styles.text}>{item.type}</span>
+                  </div>
+                  <div style={styles.item}>
+                    <span style={styles.text}>{item.distance}米</span>
+                    <span style={styles.text}>{item.address}</span>
+                  </div>
+                </Link>
                 <div style={styles.phone}>
                   <a style={styles.call} href={phone}>电话</a>
                 </div>

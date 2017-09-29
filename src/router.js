@@ -10,6 +10,7 @@ import Bank from './pages/bank/bank'
 import Toilet from './pages/toilet/toilet'
 import Main from './pages/main'
 import Map from './pages/map/map'
+import Detail from './pages/detail/detail'
 
 export default function router(){
   return (
@@ -23,6 +24,7 @@ export default function router(){
           <Route path="toilet" component={Toilet} />
         </Route>
         <Route path="map(/:type)" component={Map}/>
+        <Route path="detail(/:id)" component={Detail}/>
       </Route>
     </Router>
   );
