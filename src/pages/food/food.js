@@ -12,7 +12,7 @@ class Food extends Component {
     return (
       <div>
         <Header title="餐厅" right="地图" left="" rightClick={this.goMap} leftClick=""/>
-        <Search placeholder="搜索餐厅" changeFn={()=>{}}/>
+        {/*<Search placeholder="搜索餐厅" changeFn={()=>{}}/>*/}
         <List type="餐厅"/>
       </div>
     );

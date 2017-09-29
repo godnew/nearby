@@ -91,7 +91,7 @@ class List extends Component {
     var len = data.pois.length > 10? 10: data.pois.length;
     for(var i = 0; i < len; i++){
       posArr.push(data.pois[i].location);
-      if(data.pois[i].name.length>5){
+      if(data.pois[i].name.length>7){
           let item=data.pois[i].name.substr(0,5)+'...';
           name.push(item)
       }else{

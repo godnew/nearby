@@ -12,7 +12,7 @@ class Movie extends Component {
     return (
       <div>
         <Header title="电影院" right="地图" left="" rightClick={this.goMap} leftClick=""/>
-        <Search placeholder="搜索电影院" changeFn={()=>{}}/>
+        {/*<Search placeholder="搜索电影院" changeFn={()=>{}}/>*/}
         <List type="电影院"/>
       </div>
     );

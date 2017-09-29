@@ -12,7 +12,7 @@ class Toilet extends Component {
     return (
       <div>
         <Header title="厕所" right="地图" left="" rightClick={this.goMap} leftClick=""/>
-        <Search placeholder="搜索厕所" changeFn={()=>{}}/>
+        {/*<Search placeholder="搜索厕所" changeFn={()=>{}}/>*/}
         <List type="厕所"/>
       </div>
     );

@@ -12,7 +12,7 @@ class Bank extends Component {
     return (
       <div>
         <Header title="银行" right="地图" left="" rightClick={this.goMap} leftClick=""/>
-        <Search placeholder="搜索银行" changeFn={()=>{}}/>
+        {/*<Search placeholder="搜索银行" changeFn={()=>{}}/>*/}
         <List type="银行"/>
       </div>
     );
