@@ -21,7 +21,9 @@ class Detail extends Component {
     var len = 0;
     var buf=[];
     var that=this;
+    var all;
     if (this.state.detail.pois) {
+      all=this.state.detail.pois[0]
       if (this.state.detail.pois[0].photos) {
         len = this.state.detail.pois[0].photos.length
         for(let i=0;i<len;i++){
@@ -36,7 +38,7 @@ class Detail extends Component {
         })
       }
     }
-
+    console.log(all)
     const opt = {
       callback: function (index) {
         // 更新当前轮播图的index
@@ -63,8 +65,74 @@ class Detail extends Component {
               </ul>
             </div>
           </div>
-          <div>
-          </div>
+          <ul style={styles.detail}>
+            { all?
+              <li>
+                <div style={[{textAlign:'center',fontSize:'15px'},styles.flex1]}>{all.name}</div>
+              </li>
+              :null
+            }
+            {
+              all?
+                <li style={styles.detailItem}>
+                  <div style={styles.flex1}>地址：</div>
+                  <div style={styles.flex9}>{all.pname}{all.cityname}{all.adname}{all.business_area}{all.address}</div>
+                </li>
+                :null
+            }
+            {
+              all?
+                <li style={styles.detailItem}>
+                  <div style={styles.flex1}>类型：</div>
+                  <div style={styles.flex9}>{all.type}</div>
+                </li>
+                :null
+            }
+            {
+              all?
+                (all.tel.length?
+                  <li style={styles.detailItem}>
+                    <div style={styles.flex1}>电话：</div>
+                    <div style={styles.flex9}>{all.tel}</div>
+                  </li>
+                    :null
+                )
+                :null
+            }
+            {
+              all?
+                (all.biz_ext.rating.length?
+                    <li style={styles.detailItem}>
+                      <div style={styles.flex1}>评分：</div>
+                      <div style={styles.flex9}>{all.biz_ext.rating}分</div>
+                    </li>
+                    :null
+                )
+                :null
+            }
+            {
+              all?
+                (all.biz_ext.cost.length?
+                    <li style={styles.detailItem}>
+                      <div style={styles.flex1}>人均：</div>
+                      <div style={styles.flex9}>{all.biz_ext.cost}元</div>
+                    </li>
+                    :null
+                )
+                :null
+            }
+            {
+              all?
+                (all.biz_ext.rating.length?
+                    <li style={styles.detailItem}>
+                      <div style={styles.flex1}>营业：</div>
+                      <div style={styles.flex9}>{all.biz_ext.open_time}</div>
+                    </li>
+                    :null
+                )
+                :null
+            }
+          </ul>
         </div>
       </div>
     );
@@ -120,5 +188,29 @@ var styles = {
     borderRadius: '4px',
     backgroundColor: '#ccc',
     margin: '0 3px',
+  },
+  detail:{
+    padding:'10px',
+    paddingTop:'15px'
+  },
+  detailItem:{
+    width:'100%',
+    marginTop:'10px',
+    display:'flex',
+    height:'auto',
+    alignItems:'center'
+  },
+  flex1:{
+    width:'15%',
+    height:'auto',
+    color:'#888',
+    fontSize:'14px'
+  },
+  flex9:{
+    width:'85%',
+    height:'auto',
+    textAlign:'left',
+    color:"#666",
+    fontSize:'14px'
   }
 }
