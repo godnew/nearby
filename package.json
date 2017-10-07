@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "react": "^15.6.1",
+    "react-amap": "^1.0.3",
     "react-dom": "^15.6.1",
     "react-fastclick": "^3.0.2",
     "react-redux": "^5.0.6",
